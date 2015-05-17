@@ -1,0 +1,266 @@
+#######################################################################################
+##                                                                                   ##
+## This scene defines the standard "Cornell Box"...  with a few caveats.             ##
+## Caveats:                                                                          ##
+##     1) The light color is defined in arbitrary RGB units rather than              ##
+##        the physically measured spectrum described on the Cornell Box page         ##
+##        (http://www.graphics.cornell.edu/online/box/data.html)                     ##
+##     2) The light is defined as a point (instead of a quad with points             ##
+##        of (343,548.7,227), (343,548.7,332), (213,548.7,332) and (213,548.7,227)   ##
+##        and a surface normal of (0,-1,0))                                          ##
+##     3) Materials are defined with RGB approximations to their spectral            ##
+##        reflectance, not the 4 nm sampled spectra on the web page.                 ##
+##                                                                                   ##
+## Chris Wyman (1/9/2007)                                                            ##
+#######################################################################################
+
+# Key/mouse bindings for various controls
+controls
+	map quit 		q
+	map reload-shaders	r
+	map screen-capture	f12
+	map eye-trackball	mouse-left
+	map light-trackball-0	mouse-right
+end
+
+
+# An epsilon value used in my ray tracer -- ignored by OpenGL 
+epsilon 0.001
+
+# Setup a camera to view the scene
+camera pinhole
+    eye 2.78 2.73 -8.00
+   	up 0 1 0
+    at 2.78 2.73 2.795
+	fovy 38.5
+	res 512 512
+	trackball
+end
+
+light point
+	pos    2.78 5.487 2.795
+	color  1 0.85 0.43
+	trackball 0
+end
+
+
+# The following three colors are RGB approximations to the spectral measurements of the
+#     white, red, and green paints used in the Cornell Box.
+material lambertian white
+	albedo 0.76 0.75 0.5
+end
+
+material lambertian red
+	albedo 0.63 0.06 0.04
+end
+
+material lambertian green
+	albedo 0.15 0.48 0.09
+end
+     
+#######################################################################################
+##                                                                                   ##
+## Following this point is the geometry for the Cornell Box (minus the light).  This ##
+##     should not need to be changed to 1) add spectral colors or 2) make the units  ##
+##     physically based.  The ceiling geometry may need to be changed to make the    ##
+##     light and ceiling co-planar, however.                                         ##
+##                                                                                   ## 
+#######################################################################################
+
+# The floor (2 triangles)
+object tri floor1
+	v0 5.56 0 0
+	v1 0 0 0
+	v2 0 0 5.592
+	material white
+end
+object tri floor2
+	v0 5.56 0 0
+	v1 0 0 5.592
+	v2 5.56 0 5.592
+	material white
+end
+
+# The ceiling (2 triangles)
+object tri ceiling1
+	v0 5.56 5.488 0
+	v1 5.56 5.488 5.592
+	v2 0 5.488 5.592
+	material white
+end
+object tri ceiling2
+	v0 5.56 5.488 0
+	v1 0 5.488 5.592
+	v2 0 5.488 0
+	material white
+end
+
+# The back wall (2 triangles)
+object tri backWall1
+	v0 5.56 0 5.592
+    v1 0 0 5.592
+    v2 0 5.488 5.592
+	material white
+end
+object tri backWall2
+	v0 5.56 0 5.592
+    v1 0 5.488 5.592
+	v2 5.56 5.488 5.592
+	material white
+end
+
+# The left wall (2 triangles)
+object tri leftWall1
+	v0 5.56 0 0
+    v1 5.56 0 5.592
+    v2 5.56 5.488 5.592
+	material red
+end
+object tri leftWall2
+	v0 5.56 0 0
+    v1 5.56 5.488 5.592
+	v2 5.56 5.488 0
+	material red
+end
+
+# The right wall (2 triangles)
+object tri rightWall1
+ 	v0 0 0 5.592
+    v1 0 0 0
+    v2 0 5.488 0
+	material green
+end
+object tri rightWall2
+	v0 0 0 5.592
+    v1 0 5.488 0
+	v2 0 5.488 5.592
+	material green
+end
+
+
+# The small block (10 triangles)
+object tri smallBlock1
+	v0 1.30 1.65 0.65
+    v1 0.82 1.65 2.25
+    v2 2.40 1.65 2.72
+	material white
+end
+object tri smallBlock2
+	v0 1.30 1.65 0.65
+    v1 2.40 1.65 2.72
+	v2 2.90 1.65 1.14
+	material white
+end
+object tri smallBlock3
+	v0 2.90 0 1.14
+    v1 2.90 1.65 1.14
+    v2 2.40 1.65 2.72
+	material white
+end
+object tri smallBlock4
+	v0 2.90 0 1.14
+    v1 2.40 1.65 2.72
+	v2 2.40 0 2.72
+	material white
+end
+object tri smallBlock5
+	v0 1.30 0 0.65
+   	v1 1.30 1.65 0.65
+   	v2 2.90 1.65 1.14
+	material white
+end
+object tri smallBlock6
+	v0 1.30 0 0.65
+    v1 2.90 1.65 1.14
+	v2 2.90 0 1.14
+	material white
+end
+object tri smallBlock7
+	v0 0.82 0 2.25
+    v1 0.82 1.65 2.25
+    v2 1.30 1.65 0.65
+	material white
+end
+object tri smallBlock8
+	v0 0.82 0 2.25
+    v1 1.30 1.65 0.65
+	v2 1.30 0 0.65
+	material white
+end
+object tri smallBlock9
+ 	v0 2.40 0 2.72
+    v1 2.40 1.65 2.72
+    v2 0.82 1.65 2.25
+	material white
+end
+object tri smallBlock10
+	v0 2.40 0 2.72
+    v1 0.82 1.65 2.25
+	v2 0.82 0 2.25
+	material white
+end
+
+
+# The large block (10 triangles)
+object tri largeBlock1
+	v0 4.23 3.30 2.47
+    v1 2.65 3.30 2.96
+    v2 3.14 3.30 4.56
+	material white
+end
+object tri largeBlock2
+	v0 4.23 3.30 2.47
+   	v1 3.14 3.30 4.56
+	v2 4.72 3.30 4.06
+	material white
+end
+object tri largeBlock3
+	v0 4.23 0 2.47
+   	v1 4.23 3.30 2.47
+   	v2 4.72 3.30 4.06
+	material white
+end
+object tri largeBlock4
+	v0 4.23 0 2.47
+    v1 4.72 3.30 4.06
+	v2 4.72 0 4.06
+	material white
+end
+object tri largeBlock5
+	v0 4.72 0 4.06
+    v1 4.72 3.30 4.06
+    v2 3.14 3.30 4.56
+	material white
+end
+object tri largeBlock6
+	v0 4.72 0 4.06
+   	v1 3.14 3.30 4.56
+	v2 3.14 0 4.56
+	material white
+end
+object tri largeBlock7
+	v0 3.14 0 4.56
+   	v1 3.14 3.30 4.56
+   	v2 2.65 3.30 2.96
+	material white
+end
+object tri largeBlock8
+	v0 3.14 0 4.56
+   	v1 2.65 3.30 2.96
+	v2 2.65 0 2.96
+	material white
+end
+object tri largeBlock9
+ 	v0 2.65 0 2.96
+   	v1 2.65 3.30 2.96
+   	v2 4.23 3.30 2.47
+	material white
+end
+object tri largeBlock10
+	v0 2.65 0 2.96
+   	v1 4.23 3.30 2.47
+	v2 4.23 0 2.47
+	material white
+end
+
+

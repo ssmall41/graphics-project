@@ -1,0 +1,40 @@
+Scott Small
+HW 5 (and 4)
+22C:251
+
+Use the makefile provided to build the project. The executable is in the folder 'bin'. The data file to load is 'hw4Scene.txt'.
+
+Controls
+---------
+Arrow keys 	: Move the position of the eye
+g 		: Toggle between regular and grayscale reflection for the dragon mirror
+< and > 	: Decrease and Increase the reflectiveness of the two mirrors
+- and + 	: Decrease and Increase the number of interreflections (not quite working)
+q		: Quits
+Left Mouse	: Uses OpenGL select to toggle between Phong and Gooch shading models for objects
+Right Mouse	: Rotates the light
+
+
+The following have been attempted for this project:
+
+Homework 4
+-----------
+1) Drawing a mirror
+
+2) Drawing a second mirror that reflects the first mirror (not quite working properly)
+
+3) Using an image processing technique on a mirror (grayscale)
+
+4) Using Schlick's approximation to give a partial reflectance to the floor
+
+5) Drawing a complex object with silhouette edges
+
+Homework 5
+-----------
+6) Drawing objects using Gooch shading
+
+7) Implementation of OpenGL Select
+
+8) Drawing a mirror with a complex shape
+
+9) Loading multiple objects to make the room more interesting
