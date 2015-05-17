@@ -2,7 +2,9 @@ Scott Small
 HW 5 (and 4)
 22C:251
 
-Use the makefile provided to build the project. The executable is in the folder 'bin'. The data file to load is 'hw4Scene.txt'.
+Use the makefile provided to build the project. The executable is in the folder 'bin'. The data file to load is 'bin/scences/hw4Scene.txt'.
+
+You may also need to unzip the model files. In the folder bin, unzip the file 'models.zip' into the 'bin' directory.
 
 Controls
 ---------
